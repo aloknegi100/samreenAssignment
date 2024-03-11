@@ -73,3 +73,12 @@ exports.deleteCustomerById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.allCustomers = async (req, res) => {
+  try {
+    const cutomers = await Customer.find({});
+    res.status(201).json(cutomers);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
