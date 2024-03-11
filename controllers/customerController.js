@@ -4,6 +4,7 @@ exports.createCustomer = async (req, res) => {
   try {
     const { customerID, customerName, customerMobile, customerAddress } =
       req.body;
+    console.log("----", req.body);
     const newCustomer = new Customer({
       customerID,
       customerName,
