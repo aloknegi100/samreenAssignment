@@ -7,7 +7,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/customerDB");
+mongoose.connect("mongodb://127.0.0.1:27017/customerDB");
 const db = mongoose.connection;
 db.on("co", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", function () {
