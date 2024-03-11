@@ -7,14 +7,15 @@ const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/customerDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://localhost:27017/customerDB");
 const db = mongoose.connection;
+db.on("co", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", function () {
+  console.log("Connected to database :: Mongodb");
+});
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.use("/customers", customerRoutes);
+app.use(customerRoutes);
 
 app.get("/", (req, res) => res.send("hello world"));
 
